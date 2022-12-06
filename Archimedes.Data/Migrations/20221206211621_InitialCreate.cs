@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Archimedes.Core.Migrations
+namespace Archimedes.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,6 @@ namespace Archimedes.Core.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ListName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<short>(type: "smallint", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -72,21 +71,21 @@ namespace Archimedes.Core.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductListId = table.Column<int>(type: "int", nullable: true),
+                    CollectionId = table.Column<int>(type: "int", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_ProductLists_ProductListId",
-                        column: x => x.ProductListId,
+                        name: "FK_Customers_ProductLists_CollectionId",
+                        column: x => x.CollectionId,
                         principalTable: "ProductLists",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductProductList",
+                name: "CollectionProduct",
                 columns: table => new
                 {
                     ProductListsId = table.Column<int>(type: "int", nullable: false),
@@ -94,15 +93,15 @@ namespace Archimedes.Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductProductList", x => new { x.ProductListsId, x.ProductsId });
+                    table.PrimaryKey("PK_CollectionProduct", x => new { x.ProductListsId, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_ProductProductList_ProductLists_ProductListsId",
+                        name: "FK_CollectionProduct_ProductLists_ProductListsId",
                         column: x => x.ProductListsId,
                         principalTable: "ProductLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductProductList_Products_ProductsId",
+                        name: "FK_CollectionProduct_Products_ProductsId",
                         column: x => x.ProductsId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -115,16 +114,15 @@ namespace Archimedes.Core.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerId1 = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId1",
-                        column: x => x.CustomerId1,
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -155,9 +153,14 @@ namespace Archimedes.Core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_ProductListId",
+                name: "IX_CollectionProduct_ProductsId",
+                table: "CollectionProduct",
+                column: "ProductsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_CollectionId",
                 table: "Customers",
-                column: "ProductListId");
+                column: "CollectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProduct_ProductsId",
@@ -165,14 +168,9 @@ namespace Archimedes.Core.Migrations
                 column: "ProductsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerId1",
+                name: "IX_Orders_CustomerId",
                 table: "Orders",
-                column: "CustomerId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductProductList_ProductsId",
-                table: "ProductProductList",
-                column: "ProductsId");
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -183,10 +181,10 @@ namespace Archimedes.Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OrderProduct");
+                name: "CollectionProduct");
 
             migrationBuilder.DropTable(
-                name: "ProductProductList");
+                name: "OrderProduct");
 
             migrationBuilder.DropTable(
                 name: "Orders");

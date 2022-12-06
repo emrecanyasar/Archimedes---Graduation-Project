@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Archimedes.Core.Entities.Identity
+namespace Archimedes.Entity.Identity
 {
-    public static class Roles
+    public class Roles
     {
         public static readonly string Admin = "ADMIN";
         public static readonly string Customer = "CUSTOMER";

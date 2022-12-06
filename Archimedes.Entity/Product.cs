@@ -1,11 +1,11 @@
-﻿using Archimedes.Core.Entities.Abstract;
+﻿using Archimedes.Entity.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Archimedes.Core.Entities
+namespace Archimedes.Entity
 {
     public class Product : BaseEntity
     {
@@ -15,7 +15,7 @@ namespace Archimedes.Core.Entities
         public long Price { get; set; }
         public Category Category { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public ICollection<ProductList> ProductLists { get; set; }
+        public ICollection<Collection> ProductLists { get; set; }
 
     }
 }
