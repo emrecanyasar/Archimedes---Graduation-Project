@@ -71,21 +71,21 @@ namespace Archimedes.Data.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CollectionId = table.Column<int>(type: "int", nullable: true),
+                    FavouriteListId = table.Column<int>(type: "int", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_ProductLists_CollectionId",
-                        column: x => x.CollectionId,
+                        name: "FK_Customers_ProductLists_FavouriteListId",
+                        column: x => x.FavouriteListId,
                         principalTable: "ProductLists",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "CollectionProduct",
+                name: "FavouriteListProduct",
                 columns: table => new
                 {
                     ProductListsId = table.Column<int>(type: "int", nullable: false),
@@ -93,15 +93,15 @@ namespace Archimedes.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CollectionProduct", x => new { x.ProductListsId, x.ProductsId });
+                    table.PrimaryKey("PK_FavouriteListProduct", x => new { x.ProductListsId, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_CollectionProduct_ProductLists_ProductListsId",
+                        name: "FK_FavouriteListProduct_ProductLists_ProductListsId",
                         column: x => x.ProductListsId,
                         principalTable: "ProductLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CollectionProduct_Products_ProductsId",
+                        name: "FK_FavouriteListProduct_Products_ProductsId",
                         column: x => x.ProductsId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -153,14 +153,14 @@ namespace Archimedes.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollectionProduct_ProductsId",
-                table: "CollectionProduct",
-                column: "ProductsId");
+                name: "IX_Customers_FavouriteListId",
+                table: "Customers",
+                column: "FavouriteListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_CollectionId",
-                table: "Customers",
-                column: "CollectionId");
+                name: "IX_FavouriteListProduct_ProductsId",
+                table: "FavouriteListProduct",
+                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProduct_ProductsId",
@@ -181,7 +181,7 @@ namespace Archimedes.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CollectionProduct");
+                name: "FavouriteListProduct");
 
             migrationBuilder.DropTable(
                 name: "OrderProduct");

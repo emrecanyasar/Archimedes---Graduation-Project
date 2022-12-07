@@ -42,25 +42,6 @@ namespace Archimedes.Data.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Archimedes.Entity.Collection", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<short>("Quantity")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductLists");
-                });
-
             modelBuilder.Entity("Archimedes.Entity.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -72,11 +53,11 @@ namespace Archimedes.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CollectionId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("FavouriteListId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -94,9 +75,28 @@ namespace Archimedes.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
+                    b.HasIndex("FavouriteListId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Archimedes.Entity.FavouriteList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<short>("Quantity")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductLists");
                 });
 
             modelBuilder.Entity("Archimedes.Entity.Order", b =>
@@ -151,7 +151,7 @@ namespace Archimedes.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CollectionProduct", b =>
+            modelBuilder.Entity("FavouriteListProduct", b =>
                 {
                     b.Property<int>("ProductListsId")
                         .HasColumnType("int");
@@ -163,7 +163,7 @@ namespace Archimedes.Data.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("CollectionProduct");
+                    b.ToTable("FavouriteListProduct");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>
@@ -183,9 +183,9 @@ namespace Archimedes.Data.Migrations
 
             modelBuilder.Entity("Archimedes.Entity.Customer", b =>
                 {
-                    b.HasOne("Archimedes.Entity.Collection", null)
+                    b.HasOne("Archimedes.Entity.FavouriteList", null)
                         .WithMany("Customers")
-                        .HasForeignKey("CollectionId");
+                        .HasForeignKey("FavouriteListId");
                 });
 
             modelBuilder.Entity("Archimedes.Entity.Order", b =>
@@ -210,9 +210,9 @@ namespace Archimedes.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("CollectionProduct", b =>
+            modelBuilder.Entity("FavouriteListProduct", b =>
                 {
-                    b.HasOne("Archimedes.Entity.Collection", null)
+                    b.HasOne("Archimedes.Entity.FavouriteList", null)
                         .WithMany()
                         .HasForeignKey("ProductListsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -245,14 +245,14 @@ namespace Archimedes.Data.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Archimedes.Entity.Collection", b =>
-                {
-                    b.Navigation("Customers");
-                });
-
             modelBuilder.Entity("Archimedes.Entity.Customer", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Archimedes.Entity.FavouriteList", b =>
+                {
+                    b.Navigation("Customers");
                 });
 #pragma warning restore 612, 618
         }

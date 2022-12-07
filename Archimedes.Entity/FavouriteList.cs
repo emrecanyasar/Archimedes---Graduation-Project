@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Entity
 {
-    public class Collection : BaseEntity
+    public class FavouriteList : BaseEntity
     {
         public short Quantity { get; set; }
         public ICollection<Product> Products { get; set; }

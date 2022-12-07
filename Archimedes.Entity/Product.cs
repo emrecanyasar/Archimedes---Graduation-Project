@@ -15,7 +15,7 @@ namespace Archimedes.Entity
         public long Price { get; set; }
         public Category Category { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public ICollection<Collection> ProductLists { get; set; }
+        public ICollection<FavouriteList> ProductLists { get; set; }
 
     }
 }
