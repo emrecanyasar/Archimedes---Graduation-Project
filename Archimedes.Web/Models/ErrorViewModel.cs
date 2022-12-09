@@ -1,4 +1,4 @@
-namespace ArchimedesUI.Models
+namespace Archimedes.Web.Models
 {
     public class ErrorViewModel
     {

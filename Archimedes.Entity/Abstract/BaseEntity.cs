@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Entity.Abstract
 {
-    public class BaseEntity 
+    public abstract class BaseEntity<T> where T : IEquatable<T>
     {
-        public int Id { get; set; }
+        public T Id { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;
     }
 }

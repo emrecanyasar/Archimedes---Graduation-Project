@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<Product,int>
     {
-        List<Product> GetProductAll();
-        Product GetProductById(int id);
-
-        List<Product> GetProductByCategory(string category);
-        List<Product> GetProductSearchResult(string search);
 
     }
 }

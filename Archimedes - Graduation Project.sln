@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Web", "ArchimedesUI\Archimedes.Web.csproj", "{0B5C56ED-D4AB-4562-ADA2-0C383354ADAE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Business", "Archimedes.Business\Archimedes.Business.csproj", "{E93E75AE-728E-44F9-852D-4ABB9A81FCE5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Entity", "Archimedes.Entity\Archimedes.Entity.csproj", "{9C967DB0-C544-4683-B1CB-A8675515629D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Data", "Archimedes.Data\Archimedes.Data.csproj", "{12C17AA7-BBE5-4D9A-A446-78316FE7524A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Data", "Archimedes.Data\Archimedes.Data.csproj", "{12C17AA7-BBE5-4D9A-A446-78316FE7524A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Web", "Archimedes.Web\Archimedes.Web.csproj", "{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B5C56ED-D4AB-4562-ADA2-0C383354ADAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B5C56ED-D4AB-4562-ADA2-0C383354ADAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B5C56ED-D4AB-4562-ADA2-0C383354ADAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B5C56ED-D4AB-4562-ADA2-0C383354ADAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E93E75AE-728E-44F9-852D-4ABB9A81FCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E93E75AE-728E-44F9-852D-4ABB9A81FCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E93E75AE-728E-44F9-852D-4ABB9A81FCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{12C17AA7-BBE5-4D9A-A446-78316FE7524A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12C17AA7-BBE5-4D9A-A446-78316FE7524A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12C17AA7-BBE5-4D9A-A446-78316FE7524A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Archimedes.Data\Archimedes.Data.csproj" />
+  </ItemGroup>
+
 </Project>

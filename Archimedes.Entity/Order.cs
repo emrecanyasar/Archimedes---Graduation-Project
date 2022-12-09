@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Entity
 {
-    public class Order : BaseEntity
+    public class Order : BaseEntity<int>
     {
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public AppUser AppUser { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

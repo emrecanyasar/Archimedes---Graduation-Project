@@ -1,5 +1,8 @@
 ﻿using Archimedes.Entity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +11,20 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class ArchimedeDbContext : DbContext
+    public class ArchimedeDbContext : IdentityDbContext<AppUser,IdentityRole,string>
     {
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ArchimedeDbContext(DbContextOptions<ArchimedeDbContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=. ; Database=ArchimedeDB; Trusted_Connection=True");
+
         }
 
         public DbSet<Category> Categories { get; set; } = null!;
-        public DbSet<Customer> Customers { get; set; } = null!;
+        public DbSet<AppUser> AppUsers { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
-        public DbSet<FavouriteList> ProductLists { get; set; } = null!;
+        public DbSet<ShopList> ShopLists { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<OrderDetail> OrderDetails { get; set; } = null!;
+        public DbSet<UserShopList> UserShopLists { get; set; } = null!;
+        public DbSet<ShopListDetail> ShopListDetails { get; set; } = null!;
     }
 }

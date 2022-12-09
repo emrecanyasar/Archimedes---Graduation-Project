@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface IShopListRepository : IRepository<ShopList, int>
     {
-        List<Customer> GetCustomerAll();
-        Customer GetCustomerById(int id);
+
     }
 }
