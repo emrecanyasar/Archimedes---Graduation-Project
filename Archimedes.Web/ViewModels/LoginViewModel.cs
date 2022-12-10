@@ -7,7 +7,7 @@ namespace Archimedes.Web.ViewModels
         [Required(ErrorMessage = "Email Alanı Gereklidir!")]
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Email adresiniz doğru değil.")]
-        public string Mail { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Şifre Gereklidir.")]
         [Display(Name = "Şifre")]

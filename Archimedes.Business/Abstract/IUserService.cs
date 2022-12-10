@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Business.Abstract
 {
-    public interface IUserService
+    public interface IUserService 
     {
         void Create(AppUser entity);
         void Update(AppUser entity);

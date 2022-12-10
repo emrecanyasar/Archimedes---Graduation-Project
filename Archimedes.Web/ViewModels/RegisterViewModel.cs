@@ -4,6 +4,16 @@ namespace Archimedes.Web.ViewModels
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "İsim alanı gereklidir.")]
+        [Display(Name = "İsim")]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Soyisim alanı gereklidir.")]
+        [Display(Name = "Soyisim")]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
         [Required(ErrorMessage = "Kullanıcı adı alanı gereklidir.")]
         [Display(Name = "Kullanıcı Adı")]
         [MaxLength(15)]
@@ -14,13 +24,15 @@ namespace Archimedes.Web.ViewModels
         [EmailAddress]
         public string Email { get; set; }
 
-        [Phone]
-        [Display(Name = "Telefon Numarası")]
-        public string? PhoneNumber { get; set; }
-
         [Required(ErrorMessage = "Şifre alanı gereklidir.")]
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Şifre Tekrar alanı gereklidir.")]
+        [Display(Name = "Şifre Tekrar")]
+        [DataType(DataType.Password)]
+        [Compare(nameof(Password), ErrorMessage = "Şifreler uyuşmuyor!")]
+        public string ConfirmPassword { get; set; }
     }
 }
