@@ -10,47 +10,40 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public abstract class EfCoreGenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : IEquatable<TKey>
-    {
-        public readonly ArchimedeDbContext _dbContext;
-        public readonly DbSet<TEntity> _table;
+    public abstract class EfCoreGenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    { 
+        protected readonly DbContext _dbContext;
 
-        public EfCoreGenericRepository(ArchimedeDbContext context)
+        public EfCoreGenericRepository(DbContext context)
         {
             _dbContext= context;
-            _table= _dbContext.Set<TEntity>();
-        }
-       
-        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null)
-        {
-            return predicate == null ? _table : _table.Where(predicate);
         }
 
-        public TEntity GetById(TKey id)
+        public void Create(TEntity entity)
         {
-            return _table.Find(id);
-        }
-        public TKey Insert(TEntity entity)
-        {
-            _table.Add(entity);
-            return entity.Id;
-        }
-        public int Delete(TEntity entity)
-        {
-            _table.Remove(entity);
-            return 1;
+            _dbContext.Set<TEntity>().Add(entity);
+            _dbContext.SaveChanges();
         }
 
-
-        public int Save()
+        public void Delete(TEntity entity)
         {
-            return _dbContext.SaveChanges();
+            _dbContext.Set<TEntity>().Remove(entity);
+            _dbContext.SaveChanges();        }
+
+        public async Task<List<TEntity>> GetAll()
+        {
+           return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public int Update(TEntity entity)
+        public async Task<TEntity> GetById(int id)
         {
-            _table.Update(entity);
-            return 1;
+            return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
+
+        public void Update(TEntity entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
     }
 }

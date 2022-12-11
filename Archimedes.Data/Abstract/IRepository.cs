@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface IRepository<TEntity, TKey> where TEntity : class where TKey : IEquatable<TKey>
+    public interface IRepository<T>
     {
-        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null);
-        TEntity GetById(TKey id);
-        TKey Insert(TEntity entity);
-        int Update(TEntity entity);
-        int Delete(TEntity entity);
-        int Save();
+        //Bu interface/repository tüm entitylerimiz ilgilendiren CRUD işlemlerini barındırıyor.
+        Task<List<T>> GetAll();
+        Task<T> GetById(int id);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }

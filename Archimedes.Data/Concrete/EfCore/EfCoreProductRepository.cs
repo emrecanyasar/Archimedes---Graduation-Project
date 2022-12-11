@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class EfCoreProductRepository : EfCoreGenericRepository<Product, int>, IProductRepository
+    public class EfCoreProductRepository : EfCoreGenericRepository<Product>, IProductRepository
     {
         public EfCoreProductRepository(ArchimedeDbContext context) : base(context)
         {

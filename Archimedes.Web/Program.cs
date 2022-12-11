@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ArchimedeDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("con"));
 });
 
-builder.Services.AddScoped<ICategoryRepository<Category,int>,EfCoreCategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
 builder.Services.AddScoped<ICategoryService,CategoryManager>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>

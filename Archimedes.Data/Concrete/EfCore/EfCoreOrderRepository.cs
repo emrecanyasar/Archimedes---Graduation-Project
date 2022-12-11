@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class EfCoreOrderRepository :EfCoreGenericRepository<Order,int>
+    public class EfCoreOrderRepository :EfCoreGenericRepository<Order>
     {
         public EfCoreOrderRepository(ArchimedeDbContext context) : base(context)
         {

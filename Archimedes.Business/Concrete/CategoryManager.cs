@@ -21,34 +21,27 @@ namespace Archimedes.Business.Concrete
 
         public void Create(Category entity)
         {
-            Category category = new Category();
-            category.Id = entity.Id;
-            category.CategoryName = entity.CategoryName;
+            _categoryRepository.Create(entity);
         }
 
         public void Delete(Category entity)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Delete(entity);
         }
 
-        public List<Category> GetAll()
+        public Task<List<Category>> GetAll()
         {
-           return _categoryRepository.Get().ToList();
+            return _categoryRepository.GetAll();
         }
 
-        public Category GetById(int id)
+        public Task<Category> GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Category GetByName(string name)
-        {
-            throw new NotImplementedException();
+            return _categoryRepository.GetById(id);
         }
 
         public void Update(Category entity)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Update(entity);
         }
     }
 }

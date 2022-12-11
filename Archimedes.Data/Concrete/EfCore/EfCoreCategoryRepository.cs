@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class EfCoreCategoryRepository : EfCoreGenericRepository<Category,int> 
+    public class EfCoreCategoryRepository : EfCoreGenericRepository<Category> ,ICategoryRepository
     {
         public EfCoreCategoryRepository(ArchimedeDbContext context):base(context)
         {

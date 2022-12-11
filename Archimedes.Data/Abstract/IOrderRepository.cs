@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface IOrderRepository : IRepository<Order, int>
+    public interface IOrderRepository : IRepository<Order>
     {
 
     }

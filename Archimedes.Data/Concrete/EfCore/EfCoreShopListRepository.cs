@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class EfCoreShopListRepository : EfCoreGenericRepository<ShopList, int>
+    public class EfCoreShopListRepository : EfCoreGenericRepository<ShopList>
     {
         public EfCoreShopListRepository(ArchimedeDbContext context) : base(context)
         {

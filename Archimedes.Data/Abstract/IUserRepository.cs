@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface IUserRepository : IRepository<AppUser, int>
+    public interface IUserRepository : IRepository<AppUser>
     {
 
     }
