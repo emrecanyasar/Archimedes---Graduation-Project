@@ -1,5 +1,6 @@
 ﻿using Archimedes.Entity;
 using Archimedes.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,11 @@ namespace Archimedes.Web.Controllers
     public class AccountController : Controller
     {
         public UserManager<AppUser> _userManager { get; }
-
-        public AccountController(UserManager<AppUser> userManager)
+        public readonly SignInManager<AppUser> _signInManager;
+        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         public void AddModelError(IdentityResult result)
         {
@@ -56,6 +58,28 @@ namespace Archimedes.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user=await _userManager.FindByEmailAsync(model.Email);
+                if (user!=null)
+                {
+                    await _signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result= await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Member");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Geçersiz email adresi veya şifresi");
+                }
+            }
             return View();
         }
     }
