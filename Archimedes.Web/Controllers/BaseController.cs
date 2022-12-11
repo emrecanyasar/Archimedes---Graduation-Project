@@ -1,4 +1,5 @@
-﻿using Archimedes.Entity;
+﻿using Archimedes.Business.Abstract;
+using Archimedes.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,12 @@ namespace Archimedes.Web.Controllers
         public SignInManager<AppUser> _signInManager { get; }
         protected AppUser CurrentUser => _userManager.FindByNameAsync(User.Identity.Name).Result;
 
-        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public ICategoryService _categoryService;
+        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _categoryService = categoryService;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Archimedes.Entity;
+﻿using Archimedes.Business.Abstract;
+using Archimedes.Entity;
 using Archimedes.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +10,7 @@ namespace Archimedes.Web.Controllers
     [Authorize]
     public class MemberController : BaseController
     {
-        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) : base(userManager, signInManager)
+        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService) : base(userManager, signInManager, categoryService)
         {
 
         }

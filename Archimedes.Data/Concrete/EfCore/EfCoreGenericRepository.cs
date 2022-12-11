@@ -12,8 +12,8 @@ namespace Archimedes.Data.Concrete.EfCore
 {
     public abstract class EfCoreGenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : IEquatable<TKey>
     {
-        protected readonly ArchimedeDbContext _dbContext;
-        protected readonly DbSet<TEntity> _table;
+        public readonly ArchimedeDbContext _dbContext;
+        public readonly DbSet<TEntity> _table;
 
         public EfCoreGenericRepository(ArchimedeDbContext context)
         {

@@ -1,4 +1,5 @@
 ﻿using Archimedes.Entity;
+using Archimedes.Entity.Identity;
 using Archimedes.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -72,6 +73,12 @@ namespace Archimedes.Web.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result= await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
                     if (result.Succeeded)
                     {
+
+                        if (await _userManager.IsInRoleAsync(user,Roles.Admin))
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+
                         return RedirectToAction("Index", "Member");
                     }
                 }

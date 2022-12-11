@@ -1,3 +1,6 @@
+using Archimedes.Business.Abstract;
+using Archimedes.Business.Concrete;
+using Archimedes.Data.Abstract;
 using Archimedes.Data.Concrete.EfCore;
 using Archimedes.Entity;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +14,9 @@ builder.Services.AddDbContext<ArchimedeDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("con"));
 });
+
+builder.Services.AddScoped<ICategoryRepository<Category,int>,EfCoreCategoryRepository>();
+builder.Services.AddScoped<ICategoryService,CategoryManager>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
@@ -33,6 +39,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.User.RequireUniqueEmail = true;
 }).AddEntityFrameworkStores<ArchimedeDbContext>();
 
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

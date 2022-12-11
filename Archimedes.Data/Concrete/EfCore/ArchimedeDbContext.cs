@@ -18,6 +18,55 @@ namespace Archimedes.Data.Concrete.EfCore
 
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            var passwordHasher = new PasswordHasher<AppUser>();
+
+
+            //SEED DATA
+            builder.Entity<IdentityRole>(entity =>
+            {
+                entity.HasData(new IdentityRole()
+                {
+                    Id = "1",
+                    Name = Entity.Identity.Roles.Admin,
+                    NormalizedName = Entity.Identity.Roles.Admin.ToUpper(),
+                });
+                entity.HasData(new IdentityRole()
+                {
+                    Id = "2",
+                    Name = Entity.Identity.Roles.Customer,
+                    NormalizedName = Entity.Identity.Roles.Customer.ToUpper(),
+                });
+            });
+
+            builder.Entity<AppUser>(entity =>
+            {
+                entity.HasData(new AppUser()
+                {
+                    Id = "8e552862-a24d-4548-a6c6-9443d048cdb9",
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    Email = "admin@gmail.com",
+                    UserName = "admin",
+                    NormalizedUserName = "ADMIN",
+                    NormalizedEmail = "ADMIN@GMAIL.COM",
+                    PasswordHash = passwordHasher.HashPassword(null, "Admin0808")
+                });
+            });
+
+            builder.Entity<IdentityUserRole<string>>(entity =>
+            {
+
+                entity.HasData(new IdentityUserRole<string>
+                {
+                    RoleId = "1",
+                    UserId = "8e552862-a24d-4548-a6c6-9443d048cdb9"
+                });
+            });
+        }
+
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<AppUser> AppUsers { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
