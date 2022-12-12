@@ -27,10 +27,10 @@ namespace Archimedes.Web.Controllers
             return View(uservm);
         }
 
-        public IActionResult Categories()
+        public async Task<IActionResult> Categories()
         {
-            var products = _categoryService.GetAll();
-            return View(products);
+            var categories = await _categoryService.GetAll();
+            return View(categories);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace Archimedes.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CategoryCreate(Category model)
+        public IActionResult CategoryCreate(CategoryViewModel model)
         {
             //Gelen productı alıp EF Core aracılığıyla veritabanına kaydetmem lazım gerekiyor
             var category = new Category()
@@ -48,9 +48,29 @@ namespace Archimedes.Web.Controllers
             };
             
             _categoryService.Create(category);
+
             return RedirectToAction("Categories");
         }
+        [HttpGet]
+        public async Task<IActionResult> CategoryEdit(int id)
+        {
+            var entity = await _categoryService.GetById(id);
+            var cateentity = new CategoryViewModel()
+            {
+                CategoryId = entity.Id,
+                CategoryName = entity.CategoryName
+            }; 
+            return View(cateentity);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CategoryEdit(CategoryViewModel categoryViewModel)
+        {
+            var entity = await _categoryService.GetById(categoryViewModel.CategoryId);
+            entity.CategoryName = categoryViewModel.CategoryName;
+            _categoryService.Update(entity);
+            return RedirectToAction("Categories");
 
+        }
 
     }
 }

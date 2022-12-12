@@ -29,9 +29,9 @@ namespace Archimedes.Business.Concrete
             _categoryRepository.Delete(entity);
         }
 
-        public Task<List<Category>> GetAll()
+        public async Task<List<Category>> GetAll()
         {
-            return _categoryRepository.GetAll();
+            return await _categoryRepository.GetAll();
         }
 
         public Task<Category> GetById(int id)

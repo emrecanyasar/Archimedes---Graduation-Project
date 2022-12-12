@@ -4,7 +4,8 @@ namespace Archimedes.Web.ViewModels
 {
     public class CategoryViewModel
     {
-        [Display(Name = "Email")]
+        public int CategoryId { get; set; }
+        [Display(Name = "Kategori")]
         public string CategoryName { get; set; }
     }
 }
