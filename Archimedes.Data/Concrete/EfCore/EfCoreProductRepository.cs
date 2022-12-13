@@ -16,14 +16,40 @@ namespace Archimedes.Data.Concrete.EfCore
 
         }
 
-        public List<Product> GetProductByCategory(string category)
+        public ArchimedeDbContext archimedeDbContext
         {
-            throw new NotImplementedException();
+            get
+            {
+                return _dbContext as ArchimedeDbContext;
+            }
+        }
+        public Product GetProductDetails(int id)
+        {
+            return archimedeDbContext.Products
+                .Where(p=>p.Id == id)
+                .Include(c=>c.Category)
+                .FirstOrDefault();
         }
 
-        public List<Product> GetProductSearchResult(string search)
+        public List<Product> GetProductsByCategory(string category)
         {
-            throw new NotImplementedException();
+            List<Product> products = new List<Product>();
+            products = archimedeDbContext
+                                 .Products
+                                 .Include(p => p.Category)
+                                 .Where(p => p.Category.CategoryName == category)
+                                 .ToList();                     
+            return products;
+        }
+
+        public List<Product> GetSearchResult(string searchString)
+        {
+            var products = archimedeDbContext
+                            .Products
+                            .Where(p => p.ProductName.ToLower().Contains(searchString.ToLower()))
+                            .AsQueryable();
+
+            return products.ToList();
         }
     }
 }

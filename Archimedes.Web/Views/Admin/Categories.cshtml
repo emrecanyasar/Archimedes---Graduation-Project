@@ -21,8 +21,11 @@
                     <tr>
                         <td>@category.CategoryName</td>
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                             <a  class="btn btn-warning"  asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@category.Id" >Güncelle</a>
+                            <a class="btn btn-sm btn-warning mr-2" asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@category.Id">Güncelle</a>
+                            <form action="/admin/deletecategory" method="post" style="display: inline">
+                                <input type="hidden" name="categoryId" value="@category.Id">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 }

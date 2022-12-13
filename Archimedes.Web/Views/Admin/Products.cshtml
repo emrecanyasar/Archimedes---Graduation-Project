@@ -1,0 +1,46 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h1>Products</h1>
+<a asp-controller="Admin" asp-action="ProductsCreate" class="btn btn-sm btn-primary mb-3">Ürün Oluştur</a>
+<h3 class="tittle">Bloglar</h3>
+<div class="inner-sec">
+    <!--left-->
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card">
+                    <a href="single.html">
+                        <img src="@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                    </a>
+                    <div class="card-body">
+                        <ul class="blog-icons my-4">
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-calendar-alt"></i>@(((DateTime)item.CreatedTime).ToString("dd-MMM-yyyy"))
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <i class="far fa-comment"></i>0
+                                </a>
+                            </li>
+                        </ul>
+                        <h5 class="card-title">
+                            <a href="~/Blog/BlogReadAll/@item.ProductName">@item.ProductName</a>
+                        </h5>
+                        @*                        <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,100).LastIndexOf(" "))...</p>
+                            <a href="~/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>*@
+                    </div>
+
+                </div>
+
+            }
+        </div>
+        <!--//left-->
+    </div>
+</div>

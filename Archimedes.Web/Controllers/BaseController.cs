@@ -12,11 +12,13 @@ namespace Archimedes.Web.Controllers
         protected AppUser CurrentUser => _userManager.FindByNameAsync(User.Identity.Name).Result;
 
         public ICategoryService _categoryService;
-        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService)
+        public IProductService _productService;
+        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService, IProductService productService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _categoryService = categoryService;
+            _productService = productService;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Archimedes.Web.Controllers
     [Authorize]
     public class MemberController : BaseController
     {
-        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService) : base(userManager, signInManager, categoryService)
+        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
         {
 
         }

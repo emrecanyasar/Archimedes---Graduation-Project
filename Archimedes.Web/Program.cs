@@ -17,6 +17,8 @@ builder.Services.AddDbContext<ArchimedeDbContext>(options =>
 
 builder.Services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
 builder.Services.AddScoped<ICategoryService,CategoryManager>();
+builder.Services.AddScoped<IProductRepository, EfCoreProductRepository>();
+builder.Services.AddScoped<IProductService, ProductManager>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
