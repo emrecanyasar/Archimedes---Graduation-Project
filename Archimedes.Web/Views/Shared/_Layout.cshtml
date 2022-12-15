@@ -48,7 +48,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </svg>
                     </a>
                 </div>
-
+                <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+					<span>Hoşgeldin!</span>
+					<span class="mx-lg-4 mx-md-2  mx-1">
+						<a asp-controller="Account" asp-action="Login">
+							<i class="fas fa-lock"></i> Giriş Yap</a>
+					</span>
+					<span>
+						<a href="register.html">
+							<i class="far fa-user"></i> Üye Ol</a>
+					</span>
+				</div>
             </div>
         </div>
 
@@ -63,16 +73,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/Blog/Index/">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">
                                 Ana Sayfa
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Admin" asp-action="Products">Ürünler</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Admin" asp-action="Categories">Kategoriler</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Ürünler</a>
                         </li>
                     </ul>
                     <form action="#" method="post" class="form-inline my-2 my-lg-0 header-search">

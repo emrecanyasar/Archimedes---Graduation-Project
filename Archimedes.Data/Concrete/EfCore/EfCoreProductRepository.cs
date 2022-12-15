@@ -65,6 +65,7 @@ namespace Archimedes.Data.Concrete.EfCore
             var products = archimedeDbContext
                             .Products
                             .Where(p => p.ProductName.ToLower().Contains(searchString.ToLower()))
+                            .Include(c=>c.Category)
                             .AsQueryable();
 
             return products.ToList();

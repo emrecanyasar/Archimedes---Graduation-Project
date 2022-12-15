@@ -1,0 +1,38 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Arama Sonuçları</h3>
+<div class="inner-sec">
+    <!--left-->
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card my-2">
+                    <a href="single.html">
+                        <img src="~/Tema/resim/@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                    </a>
+                    <div class="card-body">
+
+                        <ul class="blog-icons ">
+
+                            <li class="mx-1">
+                                <h5 class="card-title">
+                                    <a href="~/Blog/BlogReadAll/@item.ProductName">@item.ProductName</a>
+                                </h5>
+                            </li>
+                            <li class="mx-1">
+                                <a href="#">
+                                    <i class="tittle">@Html.DisplayFor(modelitem=>item.Category.CategoryName)</i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

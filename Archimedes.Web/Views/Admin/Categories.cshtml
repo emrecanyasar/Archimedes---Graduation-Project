@@ -4,9 +4,8 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-12">
-        <h1>Kategoriler</h1>
+<h3 class="tittle">Kategoriler</h3>
+<div class="row inner-sec">
         <hr>
         <table class="table table-bordered">
             <thead>
@@ -20,18 +19,16 @@
                 {
                     <tr>
                         <td>@category.CategoryName</td>
-                        <td>
-                            <a class="btn btn-sm btn-warning mr-2" asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@category.Id">Güncelle</a>
+                        <td >
+                            <a class="btn btn-sm btn-warning mr-1" asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@category.Id">Güncelle</a>
                             <form action="/admin/deletecategory" method="post" style="display: inline">
                                 <input type="hidden" name="categoryId" value="@category.Id">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm my-2">Delete</button>
                             </form>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <a asp-controller="Admin" asp-action="CategoryCreate" class="btn btn-sm btn-primary mb-3">Kategori Oluştur</a>
-
-    </div>
+        <a asp-controller="Admin" asp-action="CategoryCreate" class="btn btn-primary read-m">Kategori Oluştur</a>
 </div>

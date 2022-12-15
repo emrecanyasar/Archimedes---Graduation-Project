@@ -1,0 +1,60 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "MemberProfile";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Profil</h3>
+<div class="row inner-sec">
+        <table class="table tabel-bordered table-striped">
+            <tr>
+                <th>Kullanıcı İsmi</th>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <th>Ad</th>
+                <td>@Model.FirstName</td>
+            </tr>
+            <tr>
+                <th>Soyad</th>
+                <td>@Model.LastName</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Email</td>
+            </tr>
+@*            <tr>
+                <th>Telefon No</th>
+                <td>@Model.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>
+                    @if (!String.IsNullOrEmpty(Model.City))
+                    {
+                        @Model.City
+                    }
+                    else
+
+                    {
+                        <span>belirtilmemiş</span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>Doğum Tarihi</th>
+                <td>
+
+                    @if (Model.BirthDay != null)
+                    {
+                        @Model.BirthDay?.ToShortDateString()
+                    }
+                    else
+
+                    {
+                        <span>belirtilmemiş</span>
+                    }
+                </td>
+            </tr>*@
+        </table>
+</div>

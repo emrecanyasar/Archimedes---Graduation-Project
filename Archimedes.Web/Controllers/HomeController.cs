@@ -4,6 +4,7 @@ using Archimedes.Entity;
 using Archimedes.Web.Controllers;
 using Archimedes.Web.Models;
 using Archimedes.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -16,7 +17,6 @@ namespace ArchimedesUI.Controllers
         {
 
         }
-
         public async Task<IActionResult> Index()
         {
             var products = await _productService.GetAllProducts();

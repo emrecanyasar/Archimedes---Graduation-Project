@@ -2,12 +2,14 @@
 using Archimedes.Data.Concrete.EfCore;
 using Archimedes.Entity;
 using Archimedes.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Archimedes.Web.Controllers
 {
+    [Authorize]
     public class AdminController : BaseController
     {
         public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
