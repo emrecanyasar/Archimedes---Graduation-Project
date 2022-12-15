@@ -19,8 +19,7 @@ namespace Archimedes.Web.ViewModels
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Url alanı zorunlu bir alandır!")]
-        public List<Category> SelectedCategories { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public int categoryId { get; set; }
+        public Category SelectedCategories { get; set; }
+
     }
 }

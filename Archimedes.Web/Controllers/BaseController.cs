@@ -1,4 +1,5 @@
 ﻿using Archimedes.Business.Abstract;
+using Archimedes.Data.Concrete.EfCore;
 using Archimedes.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace Archimedes.Web.Controllers
     {
         public UserManager<AppUser> _userManager { get; }
         public SignInManager<AppUser> _signInManager { get; }
+
         protected AppUser CurrentUser => _userManager.FindByNameAsync(User.Identity.Name).Result;
 
         public ICategoryService _categoryService;

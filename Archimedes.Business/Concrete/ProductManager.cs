@@ -23,6 +23,11 @@ namespace Archimedes.Business.Concrete
             _productRepository.Create(entity);
         }
 
+        public void Create(Product entity, int[] categoryIds)
+        {
+             _productRepository.Create(entity, categoryIds);
+        }
+
         public void Delete(Product entity)
         {
             _productRepository.Delete(entity);
@@ -31,6 +36,11 @@ namespace Archimedes.Business.Concrete
         public async Task<List<Product>> GetAll()
         {
             return await _productRepository.GetAll();
+        }
+
+        public async Task<List<Product>> GetAllProducts()
+        {
+            return await _productRepository.GetAllCategory();
         }
 
         public async Task<Product> GetById(int id)

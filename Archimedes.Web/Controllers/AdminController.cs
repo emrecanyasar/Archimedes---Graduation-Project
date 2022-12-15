@@ -1,4 +1,5 @@
 ﻿using Archimedes.Business.Abstract;
+using Archimedes.Data.Concrete.EfCore;
 using Archimedes.Entity;
 using Archimedes.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +10,7 @@ namespace Archimedes.Web.Controllers
 {
     public class AdminController : BaseController
     {
-        public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService,IProductService productService) : base(userManager, signInManager, categoryService,productService)
+        public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
         {
 
         }
@@ -47,7 +48,7 @@ namespace Archimedes.Web.Controllers
             {
                 CategoryName = model.CategoryName
             };
-            
+
             _categoryService.Create(category);
 
             return RedirectToAction("Categories");
@@ -60,7 +61,7 @@ namespace Archimedes.Web.Controllers
             {
                 CategoryId = entity.Id,
                 CategoryName = entity.CategoryName
-            }; 
+            };
             return View(cateentity);
         }
         [HttpPost]
@@ -85,30 +86,88 @@ namespace Archimedes.Web.Controllers
 
         public async Task<IActionResult> Products()
         {
-            var categories = await _productService.GetAll();
-            return View(categories);
+            var products = await _productService.GetAllProducts();
+
+            return View(products);
         }
         [HttpGet]
-        public IActionResult ProductsCreate()
+        public async Task<IActionResult> ProductsCreate()
         {
+            ViewBag.Categories = await _categoryService.GetAll();
+            List<Category> categories =await _categoryService.GetAll();
+            ViewBag.Category = new SelectList(categories, "Id", "CategoryName");
+
             return View();
         }
+
         [HttpPost]
-        public IActionResult ProductsCreate(ProductViewModel model)
+        public async Task<IActionResult> ProductsCreate(Product model)
         {
-            //Gelen productı alıp EF Core aracılığıyla veritabanına kaydetmem lazım gerekiyor
-            var product = new Product()
+            //Product entity = new Product();
+
+            //entity.ProductName = model.Name;
+            //entity.Price = model.Price;
+            //entity.ImageUrl = model.ImageUrl;
+            //entity.CategoryId = model.categoryId;
+
+            //_productService.Create(entity);
+            //return RedirectToAction("Products");
+            List<Category> categories = await _categoryService.GetAll();
+            ViewBag.Category = new SelectList(categories, "Id", "CategoryName");
+            var entity = new Product()
             {
-                ProductName = model.Name,
+                ProductName = model.ProductName,
                 Price = model.Price,
                 ImageUrl = model.ImageUrl,
-                CreatedTime =model.CreatedDate,
-                CategoryId = model.categoryId
+                CategoryId = model.CategoryId,
             };
-            _productService.Create(product);
 
+            //model.SelectedCategories = categories.Select(catId => new Category()
+            //{
+            //    Id = catId.Id,
+            //}).FirstOrDefault();
+            _productService.Create(entity);
+            ViewBag.Categories = await _categoryService.GetAll();
             return RedirectToAction("Products");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ProductsEdit(int id)
+        {
+            List<Category> categories = await _categoryService.GetAll();
+            ViewBag.Category = new SelectList(categories, "Id", "CategoryName");
+            var entity = await _productService.GetById(id);
+            var product = new Product()
+            {
+                ProductName = entity.ProductName,
+                Price = entity.Price,
+                ImageUrl = entity.ImageUrl,
+                CategoryId = entity.CategoryId,
+            };
+            return View(product);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ProductsEdit(Product product)
+        {
+
+            var entity = await _productService.GetById(product.Id);
+            entity.ProductName = product.ProductName;
+            entity.Price = product.Price;
+            entity.ImageUrl = product.ImageUrl;
+            entity.CategoryId = product.CategoryId;
+            _productService.Update(entity);
+            return RedirectToAction("Products");
+
+        }
+
+        public async Task<IActionResult> DeleteProducts(int productId)
+        {
+            var product = await _productService.GetById(productId);
+            if (product != null)
+            {
+                _productService.Delete(product);
+            }
+            return RedirectToAction("Products");
+        }
     }
 }

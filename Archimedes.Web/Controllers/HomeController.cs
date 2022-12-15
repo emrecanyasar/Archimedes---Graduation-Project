@@ -1,4 +1,5 @@
-﻿using Archimedes.Data.Concrete.EfCore;
+﻿using Archimedes.Business.Abstract;
+using Archimedes.Data.Concrete.EfCore;
 using Archimedes.Entity;
 using Archimedes.Web.Controllers;
 using Archimedes.Web.Models;
@@ -9,13 +10,18 @@ using System.Diagnostics;
 
 namespace ArchimedesUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-       
-
-        public IActionResult Index()
+        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
         {
-            return View();
+
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var products = await _productService.GetAllProducts();
+
+            return View(products);
         }        
     }
 }

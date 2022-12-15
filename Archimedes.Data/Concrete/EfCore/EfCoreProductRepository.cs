@@ -23,6 +23,24 @@ namespace Archimedes.Data.Concrete.EfCore
                 return _dbContext as ArchimedeDbContext;
             }
         }
+
+        public void Create(Product entity, int[] categoryIds)
+        {
+            archimedeDbContext.Products.Add(entity);
+            archimedeDbContext.SaveChanges();
+            entity.Category = categoryIds
+                .Select(catId => new Category
+                {
+                    Id = catId,
+                }).FirstOrDefault();
+        }
+
+        public async Task<List<Product>> GetAllCategory()
+        {
+            return await archimedeDbContext.Products
+                .Include(x => x.Category).ToListAsync();
+        }
+
         public Product GetProductDetails(int id)
         {
             return archimedeDbContext.Products

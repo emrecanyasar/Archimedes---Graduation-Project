@@ -10,6 +10,7 @@ namespace Archimedes.Business.Abstract
     public interface IProductService
     {
         void Create(Product entity);
+        void Create(Product entity, int[] categoryIds);
 
         void Update(Product entity);
 
@@ -21,6 +22,8 @@ namespace Archimedes.Business.Abstract
         Product GetProductDetails(int id);
         List<Product> GetProductsByCategory(string category);
         List<Product> GetSearchResult(string searchString);
+        Task<List<Product>> GetAllProducts();
+
 
 
     }
