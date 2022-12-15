@@ -15,12 +15,14 @@ namespace Archimedes.Web.Controllers
 
         public ICategoryService _categoryService;
         public IProductService _productService;
-        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService, IProductService productService)
+        public IShopListService _shopListService;
+        public BaseController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ICategoryService categoryService, IProductService productService,IShopListService shopListService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _categoryService = categoryService;
             _productService = productService;
+            _shopListService = shopListService;
         }
     }
 }

@@ -10,7 +10,9 @@ namespace Archimedes.Web.Controllers
     //[Authorize]
     public class MemberController : BaseController
     {
-        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
+
+
+        public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService, IShopListService shopListService) : base(userManager, signInManager, categoryService, productService, shopListService)
         {
 
         }
@@ -45,7 +47,13 @@ namespace Archimedes.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateList()
+        public async Task<IActionResult> CreateList()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateList(ShopList shopList)
         {
             return View();
         }

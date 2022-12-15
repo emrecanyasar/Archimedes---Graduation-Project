@@ -19,6 +19,8 @@ builder.Services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
 builder.Services.AddScoped<ICategoryService,CategoryManager>();
 builder.Services.AddScoped<IProductRepository, EfCoreProductRepository>();
 builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<IShopListRepository, EfCoreShopListRepository>();
+builder.Services.AddScoped<IShopListService, ShopListManager>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {

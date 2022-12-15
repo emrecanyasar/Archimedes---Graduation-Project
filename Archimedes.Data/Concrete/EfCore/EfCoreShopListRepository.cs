@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class EfCoreShopListRepository : EfCoreGenericRepository<ShopList>
+    public class EfCoreShopListRepository : EfCoreGenericRepository<ShopList> , IShopListRepository
     {
         public EfCoreShopListRepository(ArchimedeDbContext context) : base(context)
         {
 
         }
 
-        public List<ShopList> GetProductByUser(string user)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<ShopList> GetProductByUser(string user)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

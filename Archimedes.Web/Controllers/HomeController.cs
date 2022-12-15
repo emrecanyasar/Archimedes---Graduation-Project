@@ -13,7 +13,7 @@ namespace ArchimedesUI.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService) : base(userManager, signInManager, categoryService, productService)
+        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService,IShopListService shopListService) : base(userManager, signInManager, categoryService, productService,shopListService)
         {
 
         }
