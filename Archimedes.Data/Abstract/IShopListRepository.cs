@@ -9,6 +9,8 @@ namespace Archimedes.Data.Abstract
 {
     public interface IShopListRepository : IRepository<ShopList>
     {
+        List<ShopList> GetShopListByUser(string userId);
+        void Create(ShopList entity, string userId);
 
     }
 }

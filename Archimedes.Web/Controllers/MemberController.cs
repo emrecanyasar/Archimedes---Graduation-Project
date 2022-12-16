@@ -53,9 +53,68 @@ namespace Archimedes.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateList(ShopList shopList)
+        public async Task<IActionResult> CreateList(ShopListViewModel shopList, string userId)
         {
+            var name = HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(name);
+            var entity = new ShopList()
+            {
+                ShopListName = shopList.ShopListName,
+            };
+            userId = user.Id;
+            _shopListService.Create(entity,userId);
+
+            //shopList.Users = userId.Select(catId => catId == user.Id).FirstOrDefault();
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> MyList()
+        {
+            var user = HttpContext.User.Identity.Name;
+            var userInfo = await _userManager.FindByNameAsync(user);
+            var userId = userInfo.Id;
+            var mylist = _shopListService.GetShopListByUser(userId);
+            return View(mylist);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListEdit(int id)
+        {
+            var entity = await _categoryService.GetById(id);
+            var cateentity = new CategoryViewModel()
+            {
+                CategoryId = entity.Id,
+                CategoryName = entity.CategoryName
+            };
+            return View(cateentity);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ListEdit(CategoryViewModel categoryViewModel)
+        {
+            var entity = await _categoryService.GetById(categoryViewModel.CategoryId);
+            entity.CategoryName = categoryViewModel.CategoryName;
+            _categoryService.Update(entity);
+            return RedirectToAction("Categories");
+
+        }
+
+        public async Task<IActionResult> DeleteList(int shopListId)
+        {
+            var shopList = await _shopListService.GetById(shopListId);
+            if (shopList != null)
+            {
+                _shopListService.Delete(shopList);
+            }
+            return RedirectToAction("MyList");
+        }
+        public async Task<IActionResult> Categories()
+        {
+            var categories = await _categoryService.GetAll();
+            return View(categories);
+        }
+        public IActionResult CategoryList(string category)
+        {
+            var products = _productService.GetProductsByCategory(category);
+            return View(products);
         }
     }
 }

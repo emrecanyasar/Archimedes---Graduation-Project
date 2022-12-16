@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Entity", "Archim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Data", "Archimedes.Data\Archimedes.Data.csproj", "{12C17AA7-BBE5-4D9A-A446-78316FE7524A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Web", "Archimedes.Web\Archimedes.Web.csproj", "{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Web", "Archimedes.Web\Archimedes.Web.csproj", "{AB62DBB0-F8BB-47E9-B682-868F312BCF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

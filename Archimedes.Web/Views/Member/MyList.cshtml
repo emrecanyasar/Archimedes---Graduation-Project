@@ -1,0 +1,35 @@
+﻿@model List<ShopList>
+@{
+    ViewData["Title"] = "MyList";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Listelerim</h3>
+<div class="row inner-sec">
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Liste İsmi</th>
+                <th style="width: 130px;">İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shoplist in Model)
+            {
+                <tr>
+                    <td>@shoplist.ShopListName</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning mr-1" asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@*@category.Id*@">Ürün Ekle</a>
+                        <form asp-action="DeleteList" method="post" style="display: inline">
+                            <input type="hidden" name="shopListId" value="@shoplist.Id">
+                            <button type="submit" class="btn btn-danger btn-sm my-2">Sil</button>
+                            </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Member" asp-action="CreateList" class="btn btn-primary read-m">Liste Oluştur</a>
+</div>
+

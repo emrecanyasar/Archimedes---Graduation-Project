@@ -1,0 +1,26 @@
+﻿@model ShopListViewModel
+@{
+    ViewData["Title"] = "CreateList";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Liste OLuştur</h3>
+<div class="row inner-sec">
+    <div class="login p-5 bg-light mx-auto mw-100">
+        <form asp-controller="Member" asp-action="CreateList" method="post">
+            <div class="form-group row mb-2">
+                <label asp-for="ShopListName" class="col-2 col-form-label"></label>
+                <div class="col-10">
+                    <input type="text" class="form-control" asp-for="ShopListName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary">Oluştur</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+

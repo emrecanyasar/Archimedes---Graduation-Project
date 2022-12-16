@@ -10,6 +10,7 @@ namespace Archimedes.Business.Abstract
     public interface IShopListService
     {
         void Create(ShopList entity);
+        void Create(ShopList entity, string userId);
 
         void Update(ShopList entity);
 
@@ -18,5 +19,6 @@ namespace Archimedes.Business.Abstract
         Task<ShopList> GetById(int id);
 
         Task<List<ShopList>> GetAll();
+        List<ShopList> GetShopListByUser(string userId);
     }
 }

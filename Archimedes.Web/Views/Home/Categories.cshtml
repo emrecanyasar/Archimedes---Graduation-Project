@@ -1,0 +1,28 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="tittle">Kategoriler</h3>
+<div class="inner-sec">
+    <!--left-->
+    <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card my-2">
+                    <div class="card-body">
+
+                        <a class="btn btn-primary read-m">
+                            <form asp-action="CategoryList" method="post" style="display: inline">
+                            <input type="hidden" name="category" value="@item.CategoryName">
+                            <button type="submit" >@item.CategoryName</button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

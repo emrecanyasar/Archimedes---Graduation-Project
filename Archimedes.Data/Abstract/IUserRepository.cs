@@ -9,6 +9,7 @@ namespace Archimedes.Data.Abstract
 {
     public interface IUserRepository : IRepository<AppUser>
     {
+        List<ShopList> GetListByUser(string userId);
 
     }
 }

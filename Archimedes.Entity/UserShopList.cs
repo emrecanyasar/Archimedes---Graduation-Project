@@ -10,6 +10,7 @@ namespace Archimedes.Entity
     public class UserShopList : BaseEntity<int>
     {
         public int ShopListId { get; set; }
+        public string AppUserId { get; set; }
         public ShopList ShopList { get; set; }
         public AppUser AppUser { get; set; }
     }

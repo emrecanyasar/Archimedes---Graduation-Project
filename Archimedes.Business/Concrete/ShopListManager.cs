@@ -23,6 +23,11 @@ namespace Archimedes.Business.Concrete
             _shopListRepository.Create(entity);
         }
 
+        public void Create(ShopList entity, string userId)
+        {
+            _shopListRepository.Create(entity, userId);
+        }
+
         public void Delete(ShopList entity)
         {
             _shopListRepository.Delete(entity);
@@ -36,6 +41,21 @@ namespace Archimedes.Business.Concrete
         public async Task<ShopList> GetById(int id)
         {
            return await _shopListRepository.GetById(id);
+        }
+
+        public List<ShopList> GetListByUser(string userId)
+        {
+            return  _shopListRepository.GetShopListByUser(userId);
+        }
+
+        public List<ShopList> GetListByUser(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ShopList> GetShopListByUser(string userId)
+        {
+            return _shopListRepository.GetShopListByUser(userId);
         }
 
         public void Update(ShopList entity)

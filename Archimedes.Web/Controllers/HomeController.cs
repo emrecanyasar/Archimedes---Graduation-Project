@@ -22,6 +22,17 @@ namespace ArchimedesUI.Controllers
             var products = await _productService.GetAllProducts();
 
             return View(products);
-        }        
+        }
+        public async Task<IActionResult> Categories()
+        {
+            var categories = await _categoryService.GetAll();
+            return View(categories);
+        }
+        public IActionResult CategoryList(string category)
+        {
+            var products = _productService.GetProductsByCategory(category);
+            return View(products);
+        }
+
     }
 }
