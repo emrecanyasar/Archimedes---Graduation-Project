@@ -11,16 +11,12 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-lg-4 card my-2">
-                    <div class="card-body">
+              <div class="mx-4 card my-2">
 
-                        <a class="btn btn-primary read-m">
-                            <form asp-action="CategoryList" method="post" style="display: inline">
-                            <input type="hidden" name="category" value="@item.CategoryName">
-                            <button type="submit" >@item.CategoryName</button>
-                            </form>
-                        </a>
-                    </div>
+                    <form asp-action="CategoryList" method="post" style="display: inline">
+                        <input type="hidden" name="category" value="@item.CategoryName">
+                        <button type="submit" class="btn btn-success read-m">@item.CategoryName</button>
+                    </form>
                 </div>
             }
         </div>

@@ -19,18 +19,13 @@
 
                         <ul class="blog-icons ">
 
-                            <li class="mx-1">
+                            <li class="mx-0">
                                 <h5 class="card-title">
                                     <a href="~/Blog/BlogReadAll/@item.ProductName">@item.ProductName</a>
                                 </h5>
-                            </li>
-                            <li class="mx-1">
                                 <a href="#">
                                     <i class="tittle">@Html.DisplayFor(modelitem=>item.Category.CategoryName)</i>
                                 </a>
-                            </li>
-                            <li class="mx-1">
-                                <a asp-controller="Admin" asp-action="ProductsCreate" class="btn btn-primary read-m">Listeye Ekle</a>
                             </li>
                         </ul>
                     </div>

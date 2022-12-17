@@ -25,10 +25,10 @@ namespace Archimedes.Web.Controllers
         }
         public IActionResult Register()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Profile");
-            }
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Profile");
+            //}
             return View();
         }
 
@@ -90,12 +90,17 @@ namespace Archimedes.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> Logout()
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<IActionResult> Logout()
+        //{
+        //    await _signInManager.SignOutAsync();
+        //    HttpContext.Session.Clear();
+        //    return RedirectToAction("Index", "Home");
+        //}
+        public IActionResult LogOut()
         {
-            await _signInManager.SignOutAsync();
-            HttpContext.Session.Clear();
+            _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }

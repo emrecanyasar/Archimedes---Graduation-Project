@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th>Liste İsmi</th>
-                <th style="width: 130px;">İşlem</th>
+                <th style="width: 160px;">İşlemler</th>
             </tr>
         </thead>
         <tbody>
@@ -20,16 +20,34 @@
                 <tr>
                     <td>@shoplist.ShopListName</td>
                     <td>
-                        <a class="btn btn-sm btn-warning mr-1" asp-controller="Admin" asp-action="CategoryEdit" asp-route-id="@*@category.Id*@">Ürün Ekle</a>
+                        @if (shoplist.Use == false)
+                        {
+                            <form asp-action="Shopping" method="post" style="display: inline">
+                                <input type="hidden" name="id" value="@shoplist.Id">
+                                <button type="submit" class="btn btn-secondary btn-sm my-2 mx-2">Alışverişe Çık</button>
+                            </form>
+                        }
+                        else if(shoplist.Use==true)
+                        {
+                            <form asp-action="Shopping" method="post" style="display: inline">
+                                <input type="hidden" name="id" value="@shoplist.Id">
+                                <button type="submit" class="btn btn-warning btn-sm my-2 mx-2">Alışverişi Tamamla</button>
+                            </form>
+                        }
+                        <form asp-action="ListDetail" method="post" style="display: inline">
+                            <input type="hidden" name="listId" value="@shoplist.Id">
+                            <button type="submit" class="btn btn-info btn-sm my-2 mx-2">Detay</button>
+                        </form>
                         <form asp-action="DeleteList" method="post" style="display: inline">
                             <input type="hidden" name="shopListId" value="@shoplist.Id">
-                            <button type="submit" class="btn btn-danger btn-sm my-2">Sil</button>
-                            </form>
+                            <button type="submit" class="btn btn-danger btn-sm my-2 mx-2">Sil</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <a asp-controller="Member" asp-action="CreateList" class="btn btn-primary read-m">Liste Oluştur</a>
+    <a class="btn btn-primary read-m" asp-controller="Member" asp-action="AddProduct" asp-route-id="@*@category.Id*@">Ürün Ekle</a>
+    <a asp-controller="Member" asp-action="CreateList" class="btn btn-primary read-m mx-3">Liste Oluştur</a>
 </div>
 

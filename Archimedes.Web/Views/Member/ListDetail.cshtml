@@ -1,0 +1,40 @@
+﻿@model List<ShopListDetail>
+@{
+    ViewData["Title"] = "ListDetail";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Ürünler</h3>
+<div class="inner-sec">
+        <div class="left-blog-info-w3layouts-agileits text-left">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card my-2">
+                    <a href="single.html">
+                        <img src="~/Tema/resim/@item.Product.ImageUrl" class="card-img-top img-fluid" alt="">
+                    </a>
+                    <div class="card-body">
+
+                        <ul class="blog-icons ">
+
+                            <li class="mx-0">
+                                <h5 class="card-title">
+                                    <a href="~/Blog/BlogReadAll/@item.Product.ProductName">@item.Product.ProductName</a>
+                                </h5>
+                                <a href="#">
+                                    <i class="tittle">@Html.DisplayFor(modelitem=>item.Product.Category.CategoryName)</i>
+                                </a>
+                            </li>
+                             <form asp-action="DeleteListItem" method="post" style="display: inline">
+                            <input type="hidden" name="itemId" value="@item.Id">
+                            <button type="submit" class="btn btn-danger btn-sm my-2 mx-2">Kaldır</button>
+                        </form>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

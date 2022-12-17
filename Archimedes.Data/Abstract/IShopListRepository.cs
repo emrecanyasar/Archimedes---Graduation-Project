@@ -11,6 +11,7 @@ namespace Archimedes.Data.Abstract
     {
         List<ShopList> GetShopListByUser(string userId);
         void Create(ShopList entity, string userId);
+        void ShopUse(int id);
 
     }
 }

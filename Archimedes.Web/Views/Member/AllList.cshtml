@@ -1,0 +1,35 @@
+﻿@model List<UserShopList>
+@{
+    ViewData["Title"] = "AllList";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Bütün Listeler</h3>
+<div class="row inner-sec">
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Liste İsmi</th>
+                <th>Liste Sahibi</th>
+                <th style="width: 160px;">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shoplist in Model)
+            {
+                <tr>
+                    <td>@shoplist.ShopList.ShopListName</td>
+                    <td>@shoplist.AppUser.UserName</td>
+                    <td>
+                        <form asp-action="AddMyLists" method="post" style="display: inline">
+                            <input type="hidden" name="shopListId" value="@shoplist.ShopList.Id">
+                            <button type="submit" class="btn btn-info btn-sm my-2 mx-2">Listelerime Ekle</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

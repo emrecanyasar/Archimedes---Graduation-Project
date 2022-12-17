@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Abstract
 {
-    public interface IUserRepository : IRepository<AppUser>
+    public interface IUserShopListRepository : IRepository<UserShopList>
     {
-        List<ShopList> GetListByUser(string userId);
+        List<UserShopList> AllList(string userId);
+        void Create(string userId,int shopListId);
 
     }
 }

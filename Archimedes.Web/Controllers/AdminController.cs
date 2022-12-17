@@ -12,7 +12,7 @@ namespace Archimedes.Web.Controllers
     [Authorize]
     public class AdminController : BaseController
     {
-        public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService, IShopListService shopListService) : base(userManager, signInManager, categoryService, productService, shopListService)
+        public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService, IShopListService shopListService, IShopListDetailService shopListDetailService, ArchimedeDbContext archimedeDbContext, IUserShopListService userShopListService) : base(userManager, signInManager, categoryService, productService, shopListService, shopListDetailService, archimedeDbContext, userShopListService)
         {
 
         }

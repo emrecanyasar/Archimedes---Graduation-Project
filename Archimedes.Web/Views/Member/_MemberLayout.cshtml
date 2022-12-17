@@ -48,6 +48,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </svg>
                     </a>
                 </div>
+                <div class="col-md-4 top-forms text-right">
+                     <span>
+                        <a asp-controller="Account" asp-action="LogOut">
+                            <i class="far fa-user"></i> Çıkış Yap
+                        </a>
+                    </span>
+				</div>
 
             </div>
         </div>
@@ -76,6 +83,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Member" asp-action="MyList">Listelerim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Member" asp-action="AllList">Bütün Listeler</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Member" asp-action="MemberProfile">Profil</a>

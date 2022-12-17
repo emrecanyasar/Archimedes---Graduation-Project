@@ -10,6 +10,7 @@ namespace Archimedes.Entity
     public class ShopList : BaseEntity<int>
     {
         public string ShopListName { get; set; }
+        public bool Use { get; set; } = true;
         public ICollection<Product> Products { get; set; }
         public ICollection<UserShopList> UserShopLists { get; set; }
     }

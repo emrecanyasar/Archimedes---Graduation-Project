@@ -1,0 +1,46 @@
+﻿@model ShopListDetail
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+<h3 class="tittle">Listeye Ürün Ekle</h3>
+<div class="row inner-sec">
+    <div class="login p-5 bg-light mx-auto mw-100">
+        <form asp-controller="Member" asp-action="AddProduct" method="post">
+            @* <div class="form-group row mb-2">
+                <label asp-for="ProductName" class="col-2 col-form-label"></label>
+                <div class="col-10">
+                <input type="text" class="form-control" asp-for="ProductName">
+                </div>
+                </div>*@
+            <div class="form-group">
+                <label>Ürün :</label>
+                <select asp-for="ProductId" class="formcontrol" asp-items="ViewBag.Product">
+                    <option value="">Lütfen ürünü seçiniz:</option>
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group row mb-2">
+                <label asp-for="Quantity" class="col-2 col-form-label"></label>
+                <div class="col-10">
+                    <input type="text" class="form-control" asp-for="Quantity">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Categories :</label>
+                <select asp-for="ShopListId" class="formcontrol" asp-items="ViewBag.MyShopList">
+                    <option value="">Please choose user category:</option>
+                </select>
+                <span asp-validation-for="ShopListId" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary">Oluştur</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

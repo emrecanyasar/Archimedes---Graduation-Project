@@ -61,5 +61,24 @@ namespace Archimedes.Data.Concrete.EfCore
             }
             return shopLists;
         }
+
+        public void ShopUse(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public void ShopUse(int id)
+        //{
+        //    var item = archimedeDbContext.ShopLists.Find(id);
+        //    if (item.Use == false)
+        //    {
+        //        item.Use = true;
+        //    }
+        //    else
+        //    {
+
+        //    }
+
+        //}
     }
 }
