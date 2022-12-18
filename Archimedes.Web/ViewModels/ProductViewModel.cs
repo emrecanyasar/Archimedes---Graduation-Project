@@ -15,6 +15,10 @@ namespace Archimedes.Web.ViewModels
         [Range(1, 30000, ErrorMessage = "Price 1-30000 arasında olmalıdır!")]
         public long Price { get; set; }
 
+        [Required(ErrorMessage = "Açıklama alanı zorunlu bir alandır!")]
+        [StringLength(120, MinimumLength = 5, ErrorMessage = "Açıklama 5-120 karakter arasında bir uzunluğa sahip olmalıdır!")]
+        public string Description { get; set; }
+
         [Required(ErrorMessage = "Image url alanı zorunlu bir alandır!")]
         public string ImageUrl { get; set; }
 

@@ -37,6 +37,11 @@ namespace Archimedes.Business.Concrete
             return _shopListDetailRepository.GetById(id);
         }
 
+        public ShopListDetail GetProductDetails(int id)
+        {
+            return _shopListDetailRepository.GetProductDetails(id);
+        }
+
         public List<ShopListDetail> GetShopListDetailByListId(int listId)
         {
             return _shopListDetailRepository.GetShopListDetailByListId(listId);

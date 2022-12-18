@@ -1,0 +1,32 @@
+﻿@model ShopListDetail
+@{
+    ViewData["Title"] = "ProductDetail";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+
+
+
+<h3 class="tittle">Ürün Detayı</h3>
+<section class="banner-bottom mx-auto">
+
+    <div class="col-lg-4 card my-2 mx-auto">
+        <a href="single.html">
+            <img src="~/Tema/resim/@Model.Product.ImageUrl" class="card-img-top img-fluid" alt="">
+        </a>
+        <div class="card-body">
+
+            <ul class="blog-icons ">
+
+                <li class="mx-0">
+                </li>
+                <h5 class="card-title">
+                    <a href="~/Blog/BlogReadAll/@Model.Product.ProductName">@Model.Product.ProductName</a>
+                </h5>
+                <a href="#">
+                    <i class="tittle">@Html.DisplayFor(modelitem=>Model.Product.Category.CategoryName)</i>
+                </a>
+            </ul>
+        </div>
+    </div>
+    </div>
+</section>

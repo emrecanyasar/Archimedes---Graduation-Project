@@ -4,6 +4,7 @@ using Archimedes.Data.Concrete.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Archimedes.Data.Migrations
 {
     [DbContext(typeof(ArchimedeDbContext))]
-    partial class ArchimedeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221218125054_shopListUseDefaultFalse")]
+    partial class shopListUseDefaultFalse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +104,7 @@ namespace Archimedes.Data.Migrations
                         {
                             Id = "8e552862-a24d-4548-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c16dac3-3c46-4a49-ba7c-d2509f293786",
+                            ConcurrencyStamp = "fa78caea-9439-4679-b4b6-06c771046154",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -110,9 +112,9 @@ namespace Archimedes.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHee/QQKBWQJ6iu5/En1BQ1tQB4c/FIb0a5IfltNmDKBV2HMSMzKf8pBcTgGLwTqww==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMiSPVJUGNAuZwh0O/aK05HEl7j8gfDoShMrjD7k73G2h2HQuW5XiXCGG9rcVBdByg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f4b90356-a140-4629-bb8e-df9dae165490",
+                            SecurityStamp = "c0df4173-b306-438a-9e19-dc241025af45",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -269,10 +271,6 @@ namespace Archimedes.Data.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -351,14 +349,14 @@ namespace Archimedes.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "9103cab9-f738-4116-bf0d-55cfd3e405f0",
+                            ConcurrencyStamp = "02d92dbb-c5f6-4a37-b9f0-c6ba5a0ebbe9",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "0baee75d-f64e-4e3e-9a4a-c1ce5c4297ea",
+                            ConcurrencyStamp = "45afa3ef-6e94-4564-a5ac-d9ae2d21fc8d",
                             Name = "CUSTOMER",
                             NormalizedName = "CUSTOMER"
                         });

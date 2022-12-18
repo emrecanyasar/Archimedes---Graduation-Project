@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Archimedes.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     public class AdminController : BaseController
     {
         public AdminController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService, IShopListService shopListService, IShopListDetailService shopListDetailService, ArchimedeDbContext archimedeDbContext, IUserShopListService userShopListService) : base(userManager, signInManager, categoryService, productService, shopListService, shopListDetailService, archimedeDbContext, userShopListService)
@@ -45,12 +45,17 @@ namespace Archimedes.Web.Controllers
         [HttpPost]
         public IActionResult CategoryCreate(CategoryViewModel model)
         {
-            //Gelen productı alıp EF Core aracılığıyla veritabanına kaydetmem lazım gerekiyor
+
             var category = new Category()
             {
                 CategoryName = model.CategoryName
             };
-
+            var cate = _categoryService.GetCategoryByName(category.CategoryName)==null;
+            if (!cate)
+            {
+                ModelState.AddModelError("", "Böyle bir kategori zaten mevcut!");
+                return View(model);
+            }
             _categoryService.Create(category);
 
             return RedirectToAction("Categories");
@@ -105,15 +110,7 @@ namespace Archimedes.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductsCreate(Product model)
         {
-            //Product entity = new Product();
 
-            //entity.ProductName = model.Name;
-            //entity.Price = model.Price;
-            //entity.ImageUrl = model.ImageUrl;
-            //entity.CategoryId = model.categoryId;
-
-            //_productService.Create(entity);
-            //return RedirectToAction("Products");
             List<Category> categories = await _categoryService.GetAll();
             ViewBag.Category = new SelectList(categories, "Id", "CategoryName");
             var entity = new Product()
@@ -123,11 +120,13 @@ namespace Archimedes.Web.Controllers
                 ImageUrl = model.ImageUrl,
                 CategoryId = model.CategoryId,
             };
+            var pro = _productService.GetProductByName(model.ProductName) == null;
+            if (!pro)
+            {
+                ModelState.AddModelError("", "Bu isimde bir ürün zaten mevcut!");
+                return View(model);
+            }
 
-            //model.SelectedCategories = categories.Select(catId => new Category()
-            //{
-            //    Id = catId.Id,
-            //}).FirstOrDefault();
             _productService.Create(entity);
             ViewBag.Categories = await _categoryService.GetAll();
             return RedirectToAction("Products");

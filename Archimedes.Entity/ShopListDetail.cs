@@ -12,6 +12,7 @@ namespace Archimedes.Entity
         public int ShopListId { get; set; }
         public int ProductId { get; set; }
         public short Quantity { get; set; }
+        public string Description { get; set; }
         public int UnitPrice { get; set; }
         public ShopList ShopList { get; set; }
         public Product Product { get; set; }

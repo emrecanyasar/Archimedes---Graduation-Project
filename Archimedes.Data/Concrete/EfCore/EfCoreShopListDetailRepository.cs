@@ -33,5 +33,12 @@ namespace Archimedes.Data.Concrete.EfCore
                 .Where(sl=>sl.ShopListId==listId).ToList();
             return list;
         }
+        public ShopListDetail GetProductDetails(int id)
+        {
+            return archimedeDbContext.ShopListDetails
+                .Include(p => p.Product)
+                .ThenInclude(c => c.Category)
+                .Where(sl => sl.ProductId == id).FirstOrDefault();
+        }
     }
 }

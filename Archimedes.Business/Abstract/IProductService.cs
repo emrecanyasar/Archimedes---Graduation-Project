@@ -23,8 +23,6 @@ namespace Archimedes.Business.Abstract
         List<Product> GetProductsByCategory(string category);
         List<Product> GetSearchResult(string searchString);
         Task<List<Product>> GetAllProducts();
-
-
-
+        Product GetProductByName(string name);
     }
 }

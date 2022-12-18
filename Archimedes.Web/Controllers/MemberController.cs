@@ -9,11 +9,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Archimedes.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class MemberController : BaseController
     {
-
-
         public MemberController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICategoryService categoryService, IProductService productService, IShopListService shopListService, IShopListDetailService shopListDetailService, ArchimedeDbContext archimedeDbContext,IUserShopListService userShopListService) : base(userManager, signInManager, categoryService, productService, shopListService, shopListDetailService, archimedeDbContext, userShopListService)
         {
 
@@ -65,8 +63,6 @@ namespace Archimedes.Web.Controllers
             };
             userId = user.Id;
             _shopListService.Create(entity, userId);
-
-            //shopList.Users = userId.Select(catId => catId == user.Id).FirstOrDefault();
             return RedirectToAction("MyList");
         }
         [HttpGet]
@@ -124,6 +120,11 @@ namespace Archimedes.Web.Controllers
             var shopListDetail = _shopListDetailService.GetShopListDetailByListId(listId);
             return View(shopListDetail);
         }
+        public IActionResult OtherListDetail(int listId)
+        {
+            var shopListDetail = _shopListDetailService.GetShopListDetailByListId(listId);
+            return View(shopListDetail);
+        }
 
         [HttpGet]
         public async Task<IActionResult> AddProduct()
@@ -139,7 +140,7 @@ namespace Archimedes.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(ShopListDetail shopListDetail)
+        public async Task<IActionResult> AddProduct(ShopListDetail shopListDetail,int productId)
         {
             var user = HttpContext.User.Identity.Name;
             var userInfo = await _userManager.FindByNameAsync(user);
@@ -151,8 +152,9 @@ namespace Archimedes.Web.Controllers
             var entity = new ShopListDetail()
             {
                 ShopListId = shopListDetail.ShopListId,
-                ProductId = shopListDetail.ProductId,
+                ProductId = productId,
                 Quantity = shopListDetail.Quantity,
+                Description=shopListDetail.Description,
                 UnitPrice = shopListDetail.UnitPrice * shopListDetail.Quantity
             };
             var item = _archimedeDbContext.ShopLists.Find(shopListDetail.ShopListId);
@@ -200,7 +202,6 @@ namespace Archimedes.Web.Controllers
             
             return View(allList);
         }
-        //AddMyLists
         [HttpGet]
         public async Task<IActionResult> AddMyLists()
         {
@@ -217,5 +218,12 @@ namespace Archimedes.Web.Controllers
             return RedirectToAction("AllList");
         }
 
+        public IActionResult ProductDetail(int productId)
+        {
+            var product = _shopListDetailService.GetProductDetails(productId);
+            return View(product);
+        }
+
     }
 }
+

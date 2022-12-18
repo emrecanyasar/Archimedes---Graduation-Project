@@ -18,5 +18,7 @@ namespace Archimedes.Business.Abstract
         Task<Category> GetById(int id);
 
         Task<List<Category>> GetAll();
+        Category GetCategoryByName(string name);
+
     }
 }

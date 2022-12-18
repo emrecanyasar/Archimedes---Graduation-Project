@@ -4,6 +4,7 @@ using Archimedes.Data.Concrete.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Archimedes.Data.Migrations
 {
     [DbContext(typeof(ArchimedeDbContext))]
-    partial class ArchimedeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221218105748_uniqueCategoryNamefixed")]
+    partial class uniqueCategoryNamefixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +104,7 @@ namespace Archimedes.Data.Migrations
                         {
                             Id = "8e552862-a24d-4548-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c16dac3-3c46-4a49-ba7c-d2509f293786",
+                            ConcurrencyStamp = "4c0299aa-a4ff-45a7-be66-94fd74e91a8c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -110,9 +112,9 @@ namespace Archimedes.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHee/QQKBWQJ6iu5/En1BQ1tQB4c/FIb0a5IfltNmDKBV2HMSMzKf8pBcTgGLwTqww==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI4yPNLA0/oEalMy6Eg6zMzux/q9dQpkZc8Q6VPz4paezW/4gVQxJ5Aw3P8llSrkSA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f4b90356-a140-4629-bb8e-df9dae165490",
+                            SecurityStamp = "46ddbe0b-afe6-4ff5-beef-760e8953db9b",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -218,7 +220,7 @@ namespace Archimedes.Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ShopListId")
                         .HasColumnType("int");
@@ -226,9 +228,6 @@ namespace Archimedes.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProductName")
-                        .IsUnique();
 
                     b.HasIndex("ShopListId");
 
@@ -268,10 +267,6 @@ namespace Archimedes.Data.Migrations
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -351,14 +346,14 @@ namespace Archimedes.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "9103cab9-f738-4116-bf0d-55cfd3e405f0",
+                            ConcurrencyStamp = "d765b672-f436-42c8-bccd-50073d649014",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "0baee75d-f64e-4e3e-9a4a-c1ce5c4297ea",
+                            ConcurrencyStamp = "4f9e8510-e29b-4ae5-8a2f-b4b0f8878cd8",
                             Name = "CUSTOMER",
                             NormalizedName = "CUSTOMER"
                         });

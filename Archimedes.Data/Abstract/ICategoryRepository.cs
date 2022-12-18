@@ -9,6 +9,7 @@ namespace Archimedes.Data.Abstract
 {
     public interface ICategoryRepository : IRepository<Category>
     {
+        Category GetCategoryByName(string name);
 
     }
 }

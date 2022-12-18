@@ -41,6 +41,12 @@ namespace Archimedes.Data.Concrete.EfCore
                 .Include(x => x.Category).ToListAsync();
         }
 
+        public Product GetProductByName(string name)
+        {
+            return archimedeDbContext.Products
+                .Where(x=>x.ProductName==name).FirstOrDefault();    
+        }
+
         public Product GetProductDetails(int id)
         {
             return archimedeDbContext.Products

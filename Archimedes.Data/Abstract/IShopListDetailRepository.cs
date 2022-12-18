@@ -10,6 +10,8 @@ namespace Archimedes.Data.Abstract
     public interface IShopListDetailRepository : IRepository<ShopListDetail>
     {
         List<ShopListDetail> GetShopListDetailByListId(int listId);
+        ShopListDetail GetProductDetails(int id);
+
 
     }
 }

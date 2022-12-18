@@ -14,6 +14,8 @@ namespace Archimedes.Data.Abstract
         List<Product> GetSearchResult(string searchString);
         void Create(Product entity, int[] categoryIds);
         Task<List<Product>> GetAllCategory();
+        Product GetProductByName(string name);
+
 
 
     }

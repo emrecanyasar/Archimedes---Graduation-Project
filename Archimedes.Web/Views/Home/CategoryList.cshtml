@@ -7,14 +7,13 @@
 
 <h3 class="tittle">Kategorisine Göre Ürünler</h3>
 <div class="inner-sec">
-    <!--left-->
     <div class="left-blog-info-w3layouts-agileits text-left">
         <div class="row">
             @foreach (var item in Model)
             {
                 <div class="col-lg-4 card my-2">
                     <a href="single.html">
-                        <img  src="~/Tema/resim/@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                        <img src="~/Tema/resim/@item.ImageUrl" class="card-img-top img-fluid" alt="">
                     </a>
                     <div class="card-body">
 
@@ -37,6 +36,5 @@
 
             }
         </div>
-        <!--//left-->
     </div>
 </div>

@@ -48,6 +48,11 @@ namespace Archimedes.Business.Concrete
             return await _productRepository.GetById(id);
         }
 
+        public Product GetProductByName(string name)
+        {
+            return _productRepository.GetProductByName(name);
+        }
+
         public Product GetProductDetails(int id)
         {
             return _productRepository.GetProductDetails(id);

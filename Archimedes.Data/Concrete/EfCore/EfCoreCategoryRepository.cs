@@ -14,5 +14,19 @@ namespace Archimedes.Data.Concrete.EfCore
         {
 
         }
+
+        public ArchimedeDbContext archimedeDbContext
+        {
+            get
+            {
+                return _dbContext as ArchimedeDbContext;
+            }
+        }
+
+        public Category GetCategoryByName(string name)
+        {
+            return archimedeDbContext.Categories
+                .Where(x=>x.CategoryName==name).FirstOrDefault();
+        }
     }
 }

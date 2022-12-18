@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Archimedes.Data.Concrete.EfCore
 {
-    public class ArchimedeDbContext : IdentityDbContext<AppUser,IdentityRole,string>
+    public class ArchimedeDbContext : IdentityDbContext<AppUser, IdentityRole, string>
     {
         public ArchimedeDbContext(DbContextOptions<ArchimedeDbContext> options) : base(options)
         {
@@ -22,6 +22,9 @@ namespace Archimedes.Data.Concrete.EfCore
         {
             base.OnModelCreating(builder);
             var passwordHasher = new PasswordHasher<AppUser>();
+
+            builder.Entity<Category>().HasIndex(c => new { c.CategoryName }).IsUnique();
+            builder.Entity<Product>().HasIndex(c => new { c.ProductName }).IsUnique();
 
 
             //SEED DATA

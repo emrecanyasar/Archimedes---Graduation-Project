@@ -39,6 +39,11 @@ namespace Archimedes.Business.Concrete
             return _categoryRepository.GetById(id);
         }
 
+        public Category GetCategoryByName(string name)
+        {
+            return _categoryRepository.GetCategoryByName(name);
+        }
+
         public void Update(Category entity)
         {
             _categoryRepository.Update(entity);

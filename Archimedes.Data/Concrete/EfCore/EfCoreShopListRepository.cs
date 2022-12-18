@@ -42,7 +42,6 @@ namespace Archimedes.Data.Concrete.EfCore
             archimedeDbContext.UserShopLists.Add(shoplist);
             archimedeDbContext.SaveChanges();
         }
-
         public List<ShopList> GetShopListByUser(string userId)
         {
             List<ShopList> shopLists = new List<ShopList>();
@@ -66,19 +65,5 @@ namespace Archimedes.Data.Concrete.EfCore
         {
             throw new NotImplementedException();
         }
-
-        //public void ShopUse(int id)
-        //{
-        //    var item = archimedeDbContext.ShopLists.Find(id);
-        //    if (item.Use == false)
-        //    {
-        //        item.Use = true;
-        //    }
-        //    else
-        //    {
-
-        //    }
-
-        //}
     }
 }

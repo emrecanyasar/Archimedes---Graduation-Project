@@ -19,6 +19,8 @@ namespace Archimedes.Business.Abstract
 
         Task<List<ShopListDetail>> GetAll();
         List<ShopListDetail> GetShopListDetailByListId(int listId);
+        ShopListDetail GetProductDetails(int id);
+
 
     }
 }
